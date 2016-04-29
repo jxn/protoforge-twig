@@ -1,0 +1,30 @@
+# junk / cache / build files
+*~
+.DS_Store
+.idea
+*.swp
+*.tmp
+.sass-cache
+.svn
+.subversion
+.gitconfig
+._*
+Thumbs.db
+.ssh
+.lesshst
+.viminfo
+*.zip
+.composer
+.bash_history
+.mysql_history
+.cache
+.config
+node_modules
+
+# Project files
+/tmp
+/Project
+
+/vendor
+/composer.phar
+/exported-html
