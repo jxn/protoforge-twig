@@ -1,0 +1,25 @@
+{% extends '_example_layout.html.twig' %}
+
+{% set twig_variable = "test" %}
+
+{% block page_title %}{{ parent() }} - overriding{% endblock page_title %}
+
+{% block content %}
+<p>
+This is an example file.  Delete these demo files (demo.php, demo.html.twig, _example_layout.html.twig) to get started.
+</p>
+
+To add more variables:
+<ul>
+   <li>use a set in the twig template</li>
+   <li><b>OR</b> add query strings with the variable name</li>
+   <li><b>OR</b> create a file with a corresponding name and a php extension, and populate the 'vars' array</li>
+</ul>
+<pre>
+Variable from Twig: <i>{{ twig_variable|default('undefined') }}</i>
+Variable from Query string: <a href="?test=someValue">?test=<i>{{ test|default('undefined') }}</i></a>
+Variable from file: <i>{{ php_variable|default('undefined') }}</i>
+
+</pre>
+<img src="/images/example.jpg" />
+{% endblock %}
