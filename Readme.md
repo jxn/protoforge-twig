@@ -8,10 +8,11 @@ Protoforge-twig is a tiny, junky little application to make it easier to rapidly
 * git
 * wget
 
-## Set Up
-1. Clone this repo into a new directory for your prototype/project: `git clone https://github.com/jxn/protoforge-twig.git YOUR_PROJECT_NAME`
-2. cd into that new directory `cd YOUR_PROJECT_NAME`
-3. Run `./start.sh`
+## Quick Start
+1. Clone this repo and cd to it's directory in terminal
+2. run `./start.sh`
+3. visit http://localhost:8080 in your browser
+4. Create more twig templates in the htdocs directory.  New templates are new pages.
 
 The start.sh script will remove the .git directory to prepare for your new project.  It also runs composer (installing if necessary), installs twig in the project, starts the php built-in webserver, by default on port 8080.  If you need to specify a different port, pass it in as the first argument, like this: `./start.sh 8082`
 
