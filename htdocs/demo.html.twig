@@ -9,6 +9,12 @@
 This is an example file.  Delete these demo files (demo.php, demo.html.twig, _example_layout.html.twig) to get started.
 </p>
 
+<p>Every page has a few variables:</p>
+<ul>
+<li>page_uri: {{ page_uri }}</li>
+<li>page_title: {{ page_title|title }}</li>
+</ul>
+<p>Use the twig {{ '{{' }} dump() {{ '}}' }} function to show all variables.</p>
 To add more variables:
 <ul>
    <li>use a set in the twig template</li>

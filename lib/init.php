@@ -5,7 +5,8 @@ require 'Jxn/Protoforge.php';
 $app = new \Jxn\Protoforge(WEB_PATH, $uri);
 
 $loader = new \Twig_Loader_Filesystem(WEB_PATH);
-$twig = new \Twig_Environment($loader);
+$twig = new \Twig_Environment($loader, ['debug' => true]);
+$twig->addExtension(new Twig_Extension_Debug());
 $templateFile = $app->getTemplateByUri($uri);
 
 if (isset($opts['p'])) {
@@ -25,6 +26,7 @@ if (in_array($uri, $noPassUriList)) {
 
     $parameters = [
         'page_title' => $app->formatPageName($pageName),
+        'page_uri' => $uri,
     ];
     if ($app->pageHasVariableFile($pageName)) {
         include $app->getPageVariableFile($pageName);
