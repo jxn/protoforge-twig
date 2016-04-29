@@ -13,10 +13,10 @@ fi
 cd "$BASE_DIR"
 if grep -q 'jxn/protoforge-twig.git' '.git/config' ; then
     echo "Removing temporary git repo..."
-#    rm -Rf '.git/'
+    rm -Rf '.git/'
     echo 'done.'
     echo "Initializing new Git repo..."
-#    git init
+    git init
 fi
 
 cd "$BASE_DIR"
