@@ -23,6 +23,7 @@ node_modules
 
 # Project files
 /tmp
+/.tmp
 /Project
 
 /vendor

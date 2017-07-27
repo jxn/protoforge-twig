@@ -2,6 +2,7 @@
 
 BASE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 BASE_DIR_NAME="$(basename $BASE_DIR)"
+TMP_DIR="$BASE_DIR""/.tmp"
 HTDOCS="$BASE_DIR"'/htdocs'
 PORT='8080'
 
@@ -37,11 +38,19 @@ if [ -f "composer.json" ] ; then
     fi
 fi
 
+if [ ! -d "$TMP_DIR" ]; then
+    echo "creating temp dir"
+    mkdir "$TMP_DIR"
+fi
+
 echo "Opening htdocs directory"
-cd "$BASE_DIR""/htdocs"
+cd "$HTDOCS"
 
 echo "Running PHP server on port ""$PORT"
 echo "Visit http://localhost:""$PORT""/"
 echo "To specify a port, pass it as an argument to the start.sh script"
 echo "e.g. ""$0"" ""8082"
+
+echo "$PORT" > "$TMP_DIR""/http-port"
+
 php -S "localhost:""$PORT"
