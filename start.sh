@@ -32,7 +32,14 @@ if [ -f "composer.json" ] ; then
         composer install
     else
         if [ ! -f "composer.phar" ] ; then
-            wget 'https://getcomposer.org/composer.phar'
+            if type wget 2>/dev/null; then
+                wget 'https://getcomposer.org/composer.phar'
+            else
+                echo "You need to install wget"
+                echo "Maybe do 'brew install wget' if you use OS X"
+                echo "Please install it and run this {$0} again."
+                exit 1
+            fi
         fi
         php -d detect_unicode=Off composer.phar install
     fi
