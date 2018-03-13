@@ -8,6 +8,10 @@ if (isset($opts) && (array_key_exists('uri', $opts) || array_key_exists('u', $op
     $uri = $_SERVER['REQUEST_URI'];
 }
 
+if (strtolower($uri) === 'index') {
+    $uri = '/';
+}
+
 define('WEB_PATH', __DIR__);
 define('APP_PATH', __DIR__ . '/..');
 define('LIB_PATH', APP_PATH . '/lib');

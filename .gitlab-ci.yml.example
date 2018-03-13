@@ -1,0 +1,25 @@
+image: php:7.1.7
+
+cache:
+  paths:
+    - vendor/
+
+pages:
+  script:
+    - apt-get update -yqq
+    - apt-get install -yqq git libcurl4-gnutls-dev
+    - docker-php-ext-install curl json
+    - curl -sS https://getcomposer.org/installer | php
+
+    # Protoforge can be run in subdirectory, but these paths
+    # need to be changed
+    - cd "$CI_PROJECT_DIR""/" && php composer.phar install
+    - cd "$CI_PROJECT_DIR""/" && ./export-html-headless.sh
+    - cd "$CI_PROJECT_DIR""/" && mv exported-html public
+
+  artifacts:
+    paths:
+    - public
+  only:
+  # Branch to watch for pages
+  - master

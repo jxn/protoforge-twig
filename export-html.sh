@@ -28,7 +28,7 @@ echo "To specify a port, pass it as an argument to the script."
 echo "e.g. ""$0"" ""8081"
 
 echo "Copying files to export directory"
-cp -R "$HTDOCS/"* "$EXPORT_DIR/"
+cp -RL "$HTDOCS/"* "$EXPORT_DIR/"
 
 echo "removing PHP and twig files from export"
 rm -R "$EXPORT_DIR/"*".html.twig"
