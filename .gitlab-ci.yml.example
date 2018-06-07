@@ -1,4 +1,4 @@
-image: php:7.1.7
+image: php:7.1
 
 cache:
   paths:
@@ -15,7 +15,14 @@ pages:
     # need to be changed
     - cd "$CI_PROJECT_DIR""/" && php composer.phar install
     - cd "$CI_PROJECT_DIR""/" && ./export-html-headless.sh
+
+    ## Use this step if exporting a public site
     - cd "$CI_PROJECT_DIR""/" && mv exported-html public
+
+    ## Use these steps instead if you want to obscure your site with an insecure password (stored in insecure-password.txt in the project root)
+#    - mkdir "$CI_PROJECT_DIR""/public"
+#    - cd "$CI_PROJECT_DIR""/" && cp login.html public/index.html
+#    - cd "$CI_PROJECT_DIR""/" && mv exported-html public/$(echo -n `head -n 1 insecure-password.txt` | sha1sum |cut -d ' ' -f 1)
 
   artifacts:
     paths:

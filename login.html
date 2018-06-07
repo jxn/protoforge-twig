@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Please login to access this page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="color: #171717;">
+<div id="loginbox" style="zoom: 2; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 10, 0.7); text-align: center; margin: auto;">
+    <div style="display: flex; justify-content: center; height: 100%;">
+        <div style="display: flex; flex-direction: column; justify-content: center; width: 100%;">
+            <div style="margin: auto; border-radius: 2px; background: rgba(101, 101, 101, 0.7); padding: 14px;">
+                <input style="margin: 16px; text-align: center;" id="password" type="password" placeholder="password"/>
+                <br/>
+                <button id="loginbutton" type="button">Login</button>
+                <p id="incorrectPassword" style="display: none">incorrect password</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/chrisveness/crypto/master/sha1.js"></script>
+
+<script type="text/javascript">
+    "use strict";
+    var passInput = document.getElementById('password');
+
+    function loadPage(pwd) {
+        var hash = pwd;
+        hash = Sha1.hash(pwd);
+        var url = hash + "/index.html";
+
+        $.ajax({
+            url: url,
+            dataType: "html",
+            success: function (data) {
+                window.location = url;
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                parent.location.hash = hash;
+                $("#incorrectPassword").show();
+                $("#password").attr("placeholder", "incorrect password");
+            }
+        });
+    }
+
+    $("#loginbutton").on("click", function () {
+        loadPage(passInput.value);
+    });
+    $("#password").keypress(function (e) {
+        if (e.which == 13) {
+            loadPage(document.getElementById("password").value);
+        }
+    });
+    passInput.focus();
+</script>
+
+</body>
+</html>
